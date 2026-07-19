@@ -98,6 +98,12 @@ main {
   background: rgba(10, 20, 36, 0.85);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
+  /* Force an isolated compositing layer. Without this, iOS Safari smears a
+     mirrored copy of scrolled content behind the dynamic toolbar when a fixed
+     backdrop-filtered element is present. */
+  transform: translateZ(0);
+  will-change: transform;
+  isolation: isolate;
   transition:
     transform var(--dur-med) var(--ease),
     box-shadow var(--dur-med) var(--ease);
