@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-label="JH monogram">
+  <!-- Navy rounded-square field -->
+  <rect width="512" height="512" rx="112" fill="#0A1424"/>
+  <!-- Faint gold hairline frame, matching the site's rule aesthetic -->
+  <rect x="24" y="24" width="464" height="464" rx="92" fill="none" stroke="#D4A857" stroke-opacity="0.22" stroke-width="6"/>
+  <!-- JH letters from the 40x40 monogram path. Letters span x:6–34, y:8–32
+       (center ~20,20). Scale 8 → 320px content; translate to center it. Stroke
+       is inside the transform so it scales: 3 × 8 = 24px final. -->
+  <g fill="none" stroke="#D4A857" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" transform="translate(96 96) scale(8)">
+    <!-- J -->
+    <path d="M12 8 L12 26 C12 30, 8 32, 6 30"/>
+    <!-- H -->
+    <path d="M20 8 L20 32 M20 20 L34 20 M34 8 L34 32"/>
+  </g>
+</svg>
