@@ -134,14 +134,10 @@ main {
   margin-right: 3px;
   font-size: 10px;
 }
-.topnav__resume {
-  padding: 4px 12px;
-  min-height: 28px;
-  font-size: 11px;
-}
 @media (max-width: 900px) {
-  .topnav__list { display: none; }
-  .topnav { padding: 6px var(--container-pad); }
+  /* Below 900px the nav links are hidden and there's no résumé button left,
+     so the bar would render empty — hide it entirely. */
+  .topnav { display: none; }
 }
 
 /* -------------------------------------------------------------------------
