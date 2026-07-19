@@ -1,0 +1,72 @@
+/* Design tokens — single source of truth.
+   Palette: deep navy + warm gold. Locked per design §3.1, §3.4, §3.9. */
+
+:root {
+  /* Palette. */
+  --color-bg:            #0A1424;   /* deep navy */
+  --color-bg-elev:       #0F1B2D;   /* elevated surface */
+  --color-text:          #F2ECDC;   /* warm cream — 15.9:1 on bg (AAA) */
+  --color-text-muted:    #7A8AA0;   /* muted meta — 6.4:1 (AA normal / AAA large) */
+  --color-accent:        #D4A857;   /* warm gold — 8.7:1 (AAA) */
+  --color-accent-bright: #E5BC6F;   /* hover states only */
+  --color-hairline:      rgba(212, 168, 87, 0.18);
+  --color-shadow-glow:   rgba(212, 168, 87, 0.10);
+  --color-spotlight:     245, 220, 170;  /* rgb triple; used inside rgba() */
+
+  /* Type stacks. */
+  --font-serif:   "Newsreader", "Iowan Old Style", "Palatino", Georgia, serif;
+  --font-sans:    "Inter", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  --font-mono:    "JetBrains Mono", "SF Mono", ui-monospace, Menlo, Consolas, monospace;
+  /* --font-script retired: the signature is now a scanned GIF, not typeset. */
+
+  /* Type scale. */
+  --fz-hero: clamp(64px, 12vw, 160px);
+  --fz-h2:   clamp(28px, 4vw, 40px);
+  --fz-h3:   22px;
+  --fz-body: 18px;
+  --fz-meta: 14px;
+  --fz-mono: 13px;
+  --fz-sig:  32px;
+
+  /* Rhythm — 8px baseline. */
+  --space-1:  8px;
+  --space-2:  16px;
+  --space-3:  24px;
+  --space-4:  32px;
+  --space-5:  40px;
+  --space-6:  48px;
+  --space-8:  64px;
+  --space-10: 80px;
+  --space-12: 96px;
+  --space-15: 120px;
+
+  /* Widths. */
+  --container-max: 1200px;
+  --container-pad: 100px;
+  --w-reading:     680px;
+
+  /* Motion — LOCKED shared constants. */
+  --ease:          cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-quick:     200ms;
+  --dur-med:       400ms;
+  --dur-long:      500ms;
+  --dur-signature: 800ms;
+
+  /* Stroke — the "signature stroke." */
+  --stroke-w:     1.5px;
+  --stroke-color: var(--color-accent);
+
+  /* Spotlight (ambient). */
+  --spotlight-strength: 0.06;
+  --spotlight-radius:   400px;
+
+  /* Pointer position (updated by JS on pointermove). */
+  --mx: 50vw;
+  --my: 50vh;
+
+  /* Scroll progress 0–100% (updated by JS on scroll). */
+  --progress: 0%;
+}
+
+@media (max-width: 1080px) { :root { --container-pad: 50px; } }
+@media (max-width: 768px)  { :root { --container-pad: 25px; } }

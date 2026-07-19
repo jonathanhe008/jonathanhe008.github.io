@@ -1,0 +1,28 @@
+{%- comment -%}
+  Job tab panel. Params:
+    index    = 0-based index (drives id + hidden)
+    title    = "Software Development Engineer II"
+    at       = "Amazon"
+    at_url   = "https://www.amazon.jobs"
+    dates    = "Dec 2024 – Present"
+    location = "New York, NY"
+    bullets  = "b1|b2|b3"  (pipe-separated)
+{%- endcomment -%}
+<section class="jobs__panel" id="panel-{{ include.index }}"
+         role="tabpanel" aria-labelledby="tab-{{ include.index }}"
+         tabindex="0"
+         {% if include.index != 0 %}hidden{% endif %}>
+  <div class="jobs__panel-header">
+    {%- include amazon-logo.html -%}
+    <h3 class="jobs__panel-title">{{ include.title }}
+      <a class="jobs__panel-at" href="{{ include.at_url }}" target="_blank" rel="noopener noreferrer">@{{ include.at }}</a>
+    </h3>
+  </div>
+  <div class="jobs__panel-meta">{{ include.dates }} · {{ include.location }}</div>
+  <ul class="jobs__panel-list">
+    {%- assign _bs = include.bullets | split: "|" -%}
+    {%- for b in _bs -%}
+      <li>{{ b }}</li>
+    {%- endfor -%}
+  </ul>
+</section>

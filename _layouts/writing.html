@@ -1,0 +1,35 @@
+---
+layout: default
+---
+
+<div class="writing-index">
+  <header class="writing-index__intro">
+    <div class="writing-index__kicker">Writing</div>
+    <h1 class="writing-index__title">{{ page.title | default: "Some things I think about" }}</h1>
+    {%- if page.description %}<p class="writing-index__blurb">{{ page.description }}</p>{%- endif %}
+  </header>
+
+  {%- if site.posts.size == 0 %}
+    <p class="writing-index__empty">No posts yet — check back soon.</p>
+  {%- else %}
+    {%- assign posts_by_year = site.posts | group_by_exp: "post", "post.date | date: '%Y'" %}
+    {%- for year in posts_by_year %}
+      <section class="writing-index__year">
+        <div class="writing-index__year-label">{{ year.name }}</div>
+        <div class="writing-index__list">
+          {%- for post in year.items %}
+            <a class="writing-index__item" href="{{ post.url | relative_url }}">
+              <div class="writing-index__item-title">{{ post.title }}</div>
+              <div class="writing-index__item-meta">
+                <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: '%B %-d, %Y' }}</time>
+                {%- assign words = post.content | number_of_words -%}
+                {%- assign mins = words | plus: 219 | divided_by: 220 -%}
+                &middot; {{ mins }} min read
+              </div>
+            </a>
+          {%- endfor %}
+        </div>
+      </section>
+    {%- endfor %}
+  {%- endif %}
+</div>

@@ -1,0 +1,168 @@
+---
+layout: default
+---
+
+<div class="container">
+
+  {%- comment -%} ---------------- §00 Hero ---------------- {%- endcomment -%}
+  <section class="section hero" id="hero" aria-label="Introduction">
+    <div class="section__inner fade-up hero__stack">
+      {%- include signoff.html -%}
+      <div class="hero__text">
+        <h1 class="hero__greeting">Hi, I'm Jonathan He.</h1>
+        <p class="hero__bio">Software engineer passionate about security and building systems people can love and trust.</p>
+      </div>
+    </div>
+
+    {%- comment -%} Mobile socials — hidden on desktop; sidebars take over above 768px. {%- endcomment -%}
+    <div class="hero__mobile-socials" aria-label="Social links (mobile)">
+      <a href="https://github.com/jonathanhe008" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12a11.5 11.5 0 0 0 7.86 10.94c.58.1.79-.25.79-.55v-2c-3.2.7-3.88-1.36-3.88-1.36-.53-1.34-1.29-1.7-1.29-1.7-1.06-.72.08-.7.08-.7 1.17.08 1.79 1.2 1.79 1.2 1.04 1.78 2.73 1.27 3.4.97.1-.76.4-1.27.74-1.56-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.2-3.1-.12-.29-.52-1.47.11-3.06 0 0 .98-.31 3.2 1.18a11.1 11.1 0 0 1 5.83 0c2.22-1.5 3.2-1.18 3.2-1.18.63 1.59.23 2.77.11 3.06.75.81 1.2 1.84 1.2 3.1 0 4.43-2.7 5.4-5.26 5.69.41.35.78 1.05.78 2.12v3.14c0 .3.21.66.8.55A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>
+      </a>
+      <a href="https://www.linkedin.com/in/jonathanhe008" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.05-1.86-3.05-1.86 0-2.14 1.45-2.14 2.95v5.67H9.35V9h3.4v1.56h.05a3.74 3.74 0 0 1 3.36-1.84c3.6 0 4.26 2.37 4.26 5.45v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.11 20.45H3.56V9h3.55v11.45z"/></svg>
+      </a>
+      <a href="mailto:{{ site.author.email }}" aria-label="Email">
+        {%- include icons/envelope.svg -%}
+      </a>
+    </div>
+  </section>
+
+  {%- comment -%} ---------------- §01 About ---------------- {%- endcomment -%}
+  <section class="section" id="about-section" aria-labelledby="about">
+    <div class="section__inner fade-up">
+      {%- include section-heading.html num="01" text="About" id="about" -%}
+      <div class="about__grid">
+        <div class="about__body">
+          <p>I'm a software engineer at Amazon building enterprise-level identity and authorization infrastructure that secures interactions between users, services, and increasingly AI agents. My work focuses on designing access control systems that scale across distributed services without sacrificing security, usability, or developer experience.</p>
+          <p>I'm particularly interested in how AI is reshaping security. As AI agents proliferate across distributed systems, I've been exploring how principles like <em>least privilege</em> and <em>governed autonomy</em> can give them enough authority to be useful while keeping their actions safe, constrained, and accountable.</p>
+          <p>Before Amazon, I studied Computer Science and Statistics at the University of Illinois.</p>
+        </div>
+        {%- include portrait-about.html -%}
+      </div>
+    </div>
+  </section>
+
+  {%- comment -%} ---------------- §02 Where I've Worked ---------------- {%- endcomment -%}
+  <section class="section" id="work-section" aria-labelledby="work">
+    <div class="section__inner fade-up">
+      {%- include section-heading.html num="02" text="Where I've Worked" id="work" -%}
+      <div class="jobs" data-jobs>
+        <div class="jobs__tabs" role="tablist" aria-label="Jobs">
+          <button class="jobs__tab" role="tab" id="tab-0" aria-controls="panel-0" aria-selected="true"  tabindex="0"  data-index="0">Amazon (SDE II)</button>
+          <button class="jobs__tab" role="tab" id="tab-1" aria-controls="panel-1" aria-selected="false" tabindex="-1" data-index="1">Amazon (SDE I)</button>
+          <button class="jobs__tab" role="tab" id="tab-2" aria-controls="panel-2" aria-selected="false" tabindex="-1" data-index="2">Amazon (Intern)</button>
+        </div>
+        <div class="jobs__panels">
+          {%- include job-tab.html
+              index=0
+              title="Software Development Engineer II"
+              at="Amazon" at_url="https://www.amazon.jobs"
+              dates="Dec 2024 – Present" location="New York, NY"
+              bullets="Design delegated authorization for services and AI agents on Amazon's internal OAuth 2.0 issuer, enabling software to act on behalf of users without inheriting more authority than the task requires.|Build context propagation across distributed services, so downstream systems retain the initiating user and authorization context needed for fine-grained access control and audit.|Prototype an agent security enforcement layer with policy checks at tool-call boundaries, escalation paths for ambiguous actions, and centralized auditing." -%}
+          {%- include job-tab.html
+              index=1
+              title="Software Development Engineer I"
+              at="Amazon" at_url="https://www.amazon.jobs"
+              dates="Jan 2023 – Dec 2024" location="New York, NY"
+              bullets="Built a distributed authorization cache for token issuance, materially reducing latency on a high-throughput authentication path.|Increased per-host throughput by profiling production traffic and led stress and chaos testing across critical dependencies, redesigning load-shedding and fallback behavior so the service degraded safely under overload.|Enabled zero-downtime cryptographic migration through event-driven certificate reloading, improving cryptographic agility without interrupting live authentication traffic." -%}
+          {%- include job-tab.html
+              index=2
+              title="Software Development Engineer Intern"
+              at="Amazon" at_url="https://www.amazon.jobs"
+              dates="Summer 2021 · 2022" location="New York, NY"
+              bullets="Built an eligibility-check button for Amazon's Selling Partner Services program applicants, streamlining the application flow for potential sellers.|Automated configuration and progressive feature rollout for authorization infrastructure, reducing deployment time while adding observability and rollback controls." -%}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {%- comment -%}
+  Selected Work — hidden until real projects land. Uncomment the section and
+  its two include project-card.html calls to restore.
+  <section class="section" id="work-selected" aria-labelledby="selected">
+    <div class="section__inner fade-up">
+      {% include section-heading.html num="03" text="Selected Work" id="selected" %}
+      <div class="projects">
+        {% include project-card.html
+            title="Placeholder — jhez to fill in"
+            desc="Card description text goes here. jhez will replace with the real project blurb — what it does, why it matters, and where to find it."
+            tech="Java · AWS · Cedar"
+            github_url="#" live_url="#" %}
+        {% include project-card.html flip=true
+            title="Placeholder — jhez to fill in"
+            desc="Card description text goes here. jhez will replace with the real project blurb — what it does, why it matters, and where to find it."
+            tech="TypeScript · Node · AWS Lambda"
+            github_url="#" live_url="#" %}
+      </div>
+    </div>
+  </section>
+  {%- endcomment -%}
+
+  {%- comment -%} ---------------- §03 Some Things I Think About ---------------- {%- endcomment -%}
+  <section class="section" id="writing-section" aria-labelledby="writing-h">
+    <div class="section__inner fade-up">
+      {%- include section-heading.html num="03" text="Some Things I Think About" id="writing-h" -%}
+      <div class="writing-preview">
+        {%- assign _posts = site.posts | slice: 0, 3 -%}
+        {%- if _posts.size > 0 -%}
+          <div class="writing-preview__grid">
+            {%- for p in _posts -%}
+              {%- include post-card.html post=p -%}
+            {%- endfor -%}
+          </div>
+        {%- else -%}
+          <p class="writing-index__empty">First post landing soon.</p>
+        {%- endif -%}
+        <div class="writing-preview__link"><a href="{{ '/writing/' | relative_url }}">→ All writing</a></div>
+      </div>
+    </div>
+  </section>
+
+  {%- comment -%} ---------------- §04 Education ---------------- {%- endcomment -%}
+  <section class="section" id="education-section" aria-labelledby="education-h">
+    <div class="section__inner fade-up">
+      {%- include section-heading.html num="04" text="Education" id="education-h" -%}
+      <article class="education__card">
+        {%- include uiuc-logo.html -%}
+        <div>
+          <h3 class="education__school">University of Illinois at Urbana–Champaign</h3>
+          <div class="education__degree">B.S. Computer Science &amp; Statistics · Minor in Econometrics</div>
+          <div class="education__honors">Cum Laude · GPA <span class="gpa-count" data-target="3.95">0.00</span>/4.0</div>
+          <div class="education__meta">Champaign, IL · Aug 2019 – Dec 2022</div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  {%- comment -%} ---------------- §05 Let's connect! ---------------- {%- endcomment -%}
+  <section class="section contact" id="contact-section" aria-labelledby="whats-next">
+    <div class="section__inner fade-up">
+      {%- include section-heading.html num="05" text="Let's connect!" id="whats-next" modifier="--terminal" -%}
+      <p class="contact__body">
+        I love a good conversation. If you're thinking about identity, authorization, or the seams between security and autonomy, say hi.
+      </p>
+      <div class="contact__cta">
+        <a href="mailto:{{ site.author.email }}" class="button button--primary button--large" data-cta-key="hello-large">
+          <span class="button__icon">{%- include icons/padlock.svg -%}</span>
+          <span class="button__envelope">{%- include icons/envelope.svg -%}</span>
+          <span class="button__label">Get in touch</span>
+          <span class="button__arrow" aria-hidden="true">→</span>
+          <span class="button__flash" aria-hidden="true"></span>
+        </a>
+      </div>
+      <div class="contact__socials">
+        <a href="https://github.com/jonathanhe008" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12a11.5 11.5 0 0 0 7.86 10.94c.58.1.79-.25.79-.55v-2c-3.2.7-3.88-1.36-3.88-1.36-.53-1.34-1.29-1.7-1.29-1.7-1.06-.72.08-.7.08-.7 1.17.08 1.79 1.2 1.79 1.2 1.04 1.78 2.73 1.27 3.4.97.1-.76.4-1.27.74-1.56-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.2-3.1-.12-.29-.52-1.47.11-3.06 0 0 .98-.31 3.2 1.18a11.1 11.1 0 0 1 5.83 0c2.22-1.5 3.2-1.18 3.2-1.18.63 1.59.23 2.77.11 3.06.75.81 1.2 1.84 1.2 3.1 0 4.43-2.7 5.4-5.26 5.69.41.35.78 1.05.78 2.12v3.14c0 .3.21.66.8.55A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>
+        </a>
+        <a href="https://www.linkedin.com/in/jonathanhe008" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.05-1.86-3.05-1.86 0-2.14 1.45-2.14 2.95v5.67H9.35V9h3.4v1.56h.05a3.74 3.74 0 0 1 3.36-1.84c3.6 0 4.26 2.37 4.26 5.45v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.11 20.45H3.56V9h3.55v11.45z"/></svg>
+        </a>
+        <a href="mailto:{{ site.author.email }}" aria-label="Email">
+          {%- include icons/envelope.svg -%}
+        </a>
+      </div>
+    </div>
+  </section>
+
+</div>

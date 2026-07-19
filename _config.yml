@@ -1,1 +1,37 @@
-theme: jekyll-theme-minimal
+title: Jonathan He
+description: Software engineer, identity and agentic security.
+url: https://hejonathan.com
+author:
+  name: Jonathan He
+  email: jonathanhe008@gmail.com
+
+# Custom layouts ship in this repo; no external theme.
+
+markdown: kramdown
+kramdown:
+  input: GFM
+  smart_quotes: [lsquo, rsquo, ldquo, rdquo]
+  typographic_symbols:
+    hellip: "…"
+    ndash: "–"
+    mdash: "—"
+
+permalink: /writing/:slug/
+
+# Post defaults — every post gets the "post" layout unless it overrides in its own front matter.
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+
+sass:
+  style: compressed
+  sass_dir: _sass
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - vendor

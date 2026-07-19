@@ -1,0 +1,13 @@
+{%- comment -%}
+  Post card for §04 preview + writing archive. Param: post
+{%- endcomment -%}
+{%- assign p = include.post -%}
+<a class="post-card" href="{{ p.url | relative_url }}">
+  <div class="post-card__date">{{ p.date | date: "%b %-d, %Y" | upcase }}</div>
+  <h3 class="post-card__title">
+    <span class="post-card__lock" aria-hidden="true">{%- include icons/padlock.svg -%}</span>
+    {{ p.title }}
+  </h3>
+  <p class="post-card__excerpt">{{ p.description | default: p.excerpt | strip_html | truncate: 220 }}</p>
+  <div class="post-card__more">Read →</div>
+</a>

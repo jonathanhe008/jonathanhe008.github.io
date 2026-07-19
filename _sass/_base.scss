@@ -1,0 +1,158 @@
+/* Reset, @font-face, typography defaults, focus, scrollbar. */
+
+@font-face {
+  font-family: "Newsreader";
+  src: url("/assets/fonts/Newsreader.woff2") format("woff2");
+  font-weight: 200 800;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-024F, U+2010-2027;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("/assets/fonts/Inter.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-024F, U+2010-2027;
+}
+
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("/assets/fonts/JetBrainsMono.woff2") format("woff2");
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-024F, U+2010-2027;
+}
+
+/* Reset. */
+*, *::before, *::after { box-sizing: border-box; }
+html, body,
+h1, h2, h3, h4, h5, h6,
+p, blockquote, figure, ol, ul { margin: 0; padding: 0; }
+ul, ol { list-style: none; }
+img, picture, svg { max-width: 100%; display: block; }
+button {
+  font: inherit; color: inherit; background: none; border: 0;
+  padding: 0; cursor: pointer;
+}
+
+html {
+  font-family: var(--font-sans);
+  font-size: 100%;
+  line-height: 1.6;
+  color: var(--color-text);
+  background: var(--color-bg);
+  font-optical-sizing: auto;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+  scroll-padding-top: 50px;   /* clears the fixed topnav on anchor jumps */
+}
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+  font-size: var(--fz-body);
+}
+
+/* Selection. */
+::selection { background: var(--color-accent); color: var(--color-bg); }
+
+/* Headings — serif; opsz + wght tuned. */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+  color: var(--color-text);
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+  font-variation-settings: "opsz" 72, "wght" 500;
+}
+h1 {
+  font-variation-settings: "opsz" 72, "wght" 500;
+  letter-spacing: -0.02em;
+}
+
+p { line-height: 1.6; }
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--dur-quick) var(--ease);
+}
+a:hover, a:focus-visible { color: var(--color-accent-bright); }
+
+/* Focus ring. */
+:focus-visible {
+  outline: 2px solid var(--color-accent-bright);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
+/* Hairlines. */
+hr {
+  border: 0;
+  border-top: 1px solid var(--color-hairline);
+  height: 0;
+  margin: var(--space-6) 0;
+}
+
+/* Skip-to-main link — visible only on focus. */
+.skip-to-main {
+  position: absolute;
+  top: -100px; left: var(--space-3);
+  padding: 8px 14px;
+  background: var(--color-bg-elev);
+  color: var(--color-accent);
+  font-family: var(--font-mono);
+  font-size: var(--fz-mono);
+  border: 1px solid var(--color-accent);
+  z-index: 200;
+  transition: top var(--dur-quick) var(--ease);
+}
+.skip-to-main:focus-visible { top: var(--space-2); }
+
+/* Scrollbar — subtle. */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-hairline) transparent;
+}
+*::-webkit-scrollbar { width: 8px; height: 8px; }
+*::-webkit-scrollbar-thumb {
+  background: var(--color-hairline);
+  border-radius: 4px;
+}
+*::-webkit-scrollbar-thumb:hover { background: var(--color-accent); }
+
+/* No-JS fallbacks: keep animated content visible + hide loader. */
+.no-js .fade-up { opacity: 1 !important; transform: none !important; }
+.no-js #loader  { display: none !important; }
+/* Static GPA when JS never mounts: hide the DOM zero, print data-target instead. */
+.no-js .gpa-count { font-size: 0; }
+.no-js .gpa-count::before {
+  content: attr(data-target);
+  font-size: var(--fz-body);
+}
+
+/* Reduced motion: strip transforms + strokes, keep end-states. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .fade-up { opacity: 1 !important; transform: none !important; }
+  #loader { display: none !important; }
+}
+
+/* Print. */
+@media print {
+  #loader, .monogram, .sidebar-left, .sidebar-right,
+  .cursor-reticle, .scroll-progress, body::before { display: none !important; }
+  html, body { background: #fff !important; color: #000 !important; }
+  * { color: #000 !important; }
+  section { min-height: auto !important; padding: 40px 0 !important; }
+}

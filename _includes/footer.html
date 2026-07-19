@@ -1,0 +1,6 @@
+<footer class="footer">
+  <div class="footer__line">Designed and built by {{ site.author.name }} · &copy; {{ site.time | date: '%Y' }}</div>
+  <div class="footer__inspired">Inspired by <a href="https://github.com/bchiang7/v4" target="_blank" rel="noopener noreferrer">BC</a></div>
+  {%- comment -%} Mobile: surface the email at the very bottom of the page so it's reachable when sidebars are hidden. {%- endcomment -%}
+  <div class="footer__email"><a href="mailto:{{ site.author.email }}">{{ site.author.email }}</a></div>
+</footer>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#0A1424">
+
+  {%- assign _page_title = page.title | default: site.title -%}
+  {%- if page.title and page.url != "/" -%}
+    <title>{{ _page_title }} — {{ site.title }}</title>
+  {%- else -%}
+    <title>{{ site.title }} — {{ site.description }}</title>
+  {%- endif %}
+
+  <meta name="description" content="{{ page.description | default: site.description | escape }}">
+  <meta name="author" content="{{ site.author.name }}">
+  <link rel="canonical" href="{{ page.url | absolute_url }}">
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:title" content="{{ _page_title | escape }}">
+  <meta property="og:description" content="{{ page.description | default: site.description | escape }}">
+  <meta property="og:type" content="{% if page.layout == 'post' %}article{% else %}website{% endif %}">
+  <meta property="og:url" content="{{ page.url | absolute_url }}">
+  <meta name="twitter:card" content="summary">
+
+  <!-- Favicons — preserved from prior repo -->
+  <link rel="icon" type="image/x-icon" href="{{ '/favicon.ico' | relative_url }}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ '/assets/favicon-32x32.png' | relative_url }}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{{ '/assets/favicon-16x16.png' | relative_url }}">
+  <link rel="apple-touch-icon" sizes="180x180" href="{{ '/assets/apple-touch-icon.png' | relative_url }}">
+
+  <!-- Self-hosted fonts — preload the two critical faces -->
+  <link rel="preload" href="{{ '/assets/fonts/Newsreader.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="{{ '/assets/fonts/Inter.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
+
+  <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+
+  <!-- No-js -> js swap so CSS can gate fallback behaviors safely. -->
+  <script>document.documentElement.classList.remove('no-js');document.documentElement.classList.add('js');</script>
+
+  <script src="{{ '/assets/js/site.js' | relative_url }}" type="module" defer></script>
+</head>

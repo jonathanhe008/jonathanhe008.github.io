@@ -1,0 +1,16 @@
+{%- comment -%}
+  JH monogram — fixed top-left, links to home. On hover the letters separate
+  (unlock tumbler), a gold spark flashes between them, then they return.
+  Matches the site's security-themed motion vocabulary.
+{%- endcomment -%}
+<a href="{{ '/' | relative_url }}" class="monogram" aria-label="Jonathan He — home">
+  <svg class="monogram__mark" viewBox="0 0 40 40" role="img" aria-label="JH monogram">
+    <g class="monogram__j">
+      <path d="M12 8 L12 26 C12 30, 8 32, 6 30" />
+    </g>
+    <g class="monogram__h">
+      <path d="M20 8 L20 32 M20 20 L34 20 M34 8 L34 32" />
+    </g>
+    <circle class="monogram__spark" cx="18" cy="20" r="1.2" />
+  </svg>
+</a>

@@ -1,0 +1,12 @@
+{%- comment -%}
+  Numbered section heading. Params:
+    num  = "01"
+    text = "About"
+    id   = "about"          (for anchor)
+    modifier = "" | "--terminal"
+{%- endcomment -%}
+<h2 class="section-heading{% if include.modifier %} section-heading{{ include.modifier }}{% endif %}"
+    id="{{ include.id }}">
+  <span class="section-heading__num">{{ include.num }}.</span>
+  <span class="section-heading__text">{{ include.text }}</span>
+</h2>

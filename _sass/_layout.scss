@@ -1,0 +1,442 @@
+/* Frame: container, monogram, sidebars, loader, spotlight, custom cursor,
+   scroll-progress, footer, view-transition names. */
+
+/* -------------------------------------------------------------------------
+   Container + main
+------------------------------------------------------------------------- */
+.container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding-inline: var(--container-pad);
+}
+
+main {
+  position: relative;
+  z-index: 4;
+}
+
+/* -------------------------------------------------------------------------
+   Monogram — top-left corner. Links home. Hover triggers J·H unlock+spark.
+------------------------------------------------------------------------- */
+.monogram {
+  position: fixed;
+  top: 24px;
+  left: var(--container-pad);
+  z-index: 20;
+  display: inline-flex;
+  align-items: center;
+  color: var(--color-accent);
+  text-decoration: none;
+  view-transition-name: monogram;
+}
+@media (max-width: 1080px) { .monogram { left: 25px; } }
+@media (max-width: 768px)  { .monogram { left: 20px; top: 18px; } }
+
+.monogram__mark {
+  width: 40px;
+  height: 40px;
+  display: block;
+  overflow: visible;   /* separated J/H can render slightly outside the 40x40 */
+}
+/* Applies to both .monogram__j and .monogram__h <path> children — they render
+   as hairline gold via inherited color. Keep the SVG markup free of fill/stroke
+   attrs so this stays the single source of stroke truth for the monogram. */
+.monogram__mark path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: var(--stroke-w);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.monogram__j,
+.monogram__h {
+  transition: transform var(--dur-med) var(--ease);
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.monogram:hover { color: var(--color-accent-bright); }
+.monogram:hover .monogram__j { transform: translateX(-3px); }
+.monogram:hover .monogram__h { transform: translateX(3px); }
+
+/* Spark — small gold dot that flashes between the separated glyphs. */
+.monogram__spark {
+  fill: var(--color-accent);
+  stroke: none;
+  opacity: 0;
+  transform-origin: 18px 20px;
+  transform: scale(0.4);
+}
+.monogram:hover .monogram__spark {
+  animation: monogram-spark var(--dur-long) var(--ease) 300ms forwards;
+}
+@keyframes monogram-spark {
+  0%   { opacity: 0; transform: scale(0.4); }
+  40%  { opacity: 1; transform: scale(1.4); }
+  100% { opacity: 0; transform: scale(1.8); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .monogram:hover .monogram__j,
+  .monogram:hover .monogram__h { transform: none; }
+  .monogram:hover .monogram__spark { animation: none; opacity: 0; }
+}
+
+/* -------------------------------------------------------------------------
+   Top navigation — fixed, hides on scroll-down, reveals on scroll-up
+------------------------------------------------------------------------- */
+.topnav {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 18;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 18px;
+  padding: 6px var(--container-pad);
+  background: rgba(10, 20, 36, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition:
+    transform var(--dur-med) var(--ease),
+    box-shadow var(--dur-med) var(--ease);
+}
+.topnav.is-scrolled { box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3); }
+.topnav.is-hidden   { transform: translateY(-100%); }
+
+.topnav__list {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.topnav__list a {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--color-text);
+  text-decoration: none;
+  transition: color var(--dur-quick) var(--ease);
+}
+.topnav__list a:hover,
+.topnav__list a:focus-visible { color: var(--color-accent-bright); }
+.topnav__num {
+  color: var(--color-accent);
+  margin-right: 3px;
+  font-size: 10px;
+}
+.topnav__resume {
+  padding: 4px 12px;
+  min-height: 28px;
+  font-size: 11px;
+}
+@media (max-width: 900px) {
+  .topnav__list { display: none; }
+  .topnav { padding: 6px var(--container-pad); }
+}
+
+/* -------------------------------------------------------------------------
+   Sidebars (fixed rails)
+------------------------------------------------------------------------- */
+.sidebar {
+  position: fixed;
+  bottom: 0;
+  z-index: 15;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  opacity: 0;
+  transform: translateX(-40px);
+  transition:
+    opacity var(--dur-med) var(--ease),
+    transform var(--dur-med) var(--ease);
+}
+.sidebar-left  { left: var(--container-pad); }
+.sidebar-right {
+  right: var(--container-pad);
+  transform: translateX(40px);
+}
+.sidebar.is-in { opacity: 1; transform: none; }
+
+@media (max-width: 1080px) {
+  .sidebar-left  { left: 25px; }
+  .sidebar-right { right: 25px; }
+}
+@media (max-width: 768px) {
+  .sidebar { display: none; }
+}
+
+.sidebar__list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 0;
+}
+.sidebar__item a {
+  display: inline-flex;
+  padding: 10px;
+  color: var(--color-text-muted);
+  transition: color var(--dur-med) var(--ease), transform var(--dur-med) var(--ease);
+  position: relative;
+}
+.sidebar__item a:hover,
+.sidebar__item a:focus-visible {
+  color: var(--color-accent-bright);
+  transform: translateY(-3px);
+}
+.sidebar__item svg { width: 20px; height: 20px; }
+
+/* Scan-pulse ring injected by JS on hover — plain circle. */
+.scan-ring {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 40px; height: 40px;
+  pointer-events: none;
+}
+.scan-ring circle {
+  cx: 50%; cy: 50%;
+  fill: none;
+  stroke: var(--color-accent);
+  stroke-width: var(--stroke-w);
+  transform-origin: center;
+  animation: scan-pulse var(--dur-long) var(--ease) forwards;
+}
+@keyframes scan-pulse {
+  0%   { r: 10px; opacity: 1; }
+  100% { r: 20px; opacity: 0; }
+}
+
+.sidebar__rail {
+  width: 1px;
+  height: 90px;
+  background: var(--color-hairline);
+  transition: background var(--dur-med) var(--ease);
+}
+.sidebar:hover .sidebar__rail { background: var(--color-accent); }
+
+/* Right rail — section number + hairline progress bar showing how far the
+   user has scrolled within the current section. The bar IS the rail. */
+.sidebar-right__marker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0;
+}
+.sidebar-right__num {
+  font-family: var(--font-mono);
+  font-size: var(--fz-mono);
+  letter-spacing: 0.15em;
+  color: var(--color-accent);
+  min-width: 2ch;
+  text-align: center;
+  transition: opacity var(--dur-quick) var(--ease);
+}
+.sidebar-right__marker.is-changing .sidebar-right__num { opacity: 0; }
+
+.sidebar-right__bar {
+  position: relative;
+  width: var(--stroke-w);
+  height: 140px;
+  background: var(--color-hairline);
+  border-radius: 999px;
+  overflow: hidden;
+}
+.sidebar-right__bar-fill {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 0%;
+  background: var(--color-accent);
+  transform-origin: top;
+  transition: height 60ms linear;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sidebar-right__bar-fill,
+  .sidebar-right__num { transition: none; }
+}
+
+/* -------------------------------------------------------------------------
+   Loader — first-visit-per-session
+------------------------------------------------------------------------- */
+#loader {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: #000;
+  display: grid;
+  place-items: center;
+  transition: background 200ms linear, opacity 300ms var(--ease);
+}
+#loader.is-navy    { background: var(--color-bg); }
+#loader.is-hiding  { opacity: 0; pointer-events: none; }
+
+#loader svg {
+  width: 80px;
+  height: 80px;
+  color: var(--color-accent);
+  overflow: visible;
+}
+#loader svg path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: var(--stroke-w);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 120;
+  stroke-dashoffset: 120;
+}
+#loader.is-drawing .loader__j { animation: draw 300ms var(--ease) 200ms forwards; }
+#loader.is-drawing .loader__h { animation: draw 300ms var(--ease) 500ms forwards; }
+#loader .loader__ring {
+  transform-origin: center;
+  transform: scale(1);
+  opacity: 0;
+}
+#loader.is-sealing .loader__ring {
+  animation: seal-press var(--dur-med) var(--ease) forwards;
+}
+@keyframes draw   { to { stroke-dashoffset: 0; } }
+@keyframes seal-press {
+  0%   { transform: scale(1);   opacity: 1; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+
+/* -------------------------------------------------------------------------
+   Ambient spotlight
+------------------------------------------------------------------------- */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  background: radial-gradient(
+    var(--spotlight-radius) circle at var(--mx) var(--my),
+    rgba(var(--color-spotlight), var(--spotlight-strength)),
+    transparent 60%
+  );
+  mix-blend-mode: soft-light;
+  opacity: 0;
+  transition: opacity var(--dur-long) var(--ease);
+}
+body.spotlight-on::before { opacity: 1; }
+
+@media (hover: none), (pointer: coarse), (prefers-reduced-motion: reduce) {
+  body::before { display: none; }
+}
+
+/* -------------------------------------------------------------------------
+   Custom cursor — the scanner reticle
+------------------------------------------------------------------------- */
+.cursor-reticle {
+  position: fixed;
+  top: 0; left: 0;
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  border: var(--stroke-w) solid var(--color-accent);
+  background: transparent;
+  pointer-events: none;
+  z-index: 100;
+  mix-blend-mode: difference;
+  transform: translate3d(var(--mx), var(--my), 0) translate(-50%, -50%);
+  transition: width var(--dur-quick) var(--ease),
+              height var(--dur-quick) var(--ease),
+              transform 60ms linear;
+  opacity: 0;
+}
+.cursor-reticle.is-active { opacity: 1; }
+.cursor-reticle.is-hover  { width: 24px; height: 24px; }
+.cursor-reticle::before {
+  content: "";
+  position: absolute;
+  inset: 0; margin: auto;
+  width: 2px; height: 2px;
+  background: var(--color-accent);
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity var(--dur-quick) var(--ease);
+}
+.cursor-reticle.is-hover::before { opacity: 1; }
+.cursor-reticle.is-click { transform: translate3d(var(--mx), var(--my), 0) translate(-50%, -50%) scale(0.9); }
+
+@media (hover: none), (pointer: coarse), (prefers-reduced-motion: reduce) {
+  .cursor-reticle { display: none; }
+}
+
+/* -------------------------------------------------------------------------
+   Scroll progress hairline
+------------------------------------------------------------------------- */
+.scroll-progress {
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: var(--stroke-w);
+  height: 100vh;
+  background: var(--color-hairline);
+  z-index: 12;
+  pointer-events: none;
+}
+.scroll-progress__fill {
+  width: 100%;
+  height: var(--progress);
+  background: var(--color-accent);
+  transition: height 60ms linear;
+}
+@media (max-width: 768px) {
+  .scroll-progress { width: 1px; }
+}
+
+/* -------------------------------------------------------------------------
+   Footer
+------------------------------------------------------------------------- */
+.footer {
+  max-width: var(--container-max);
+  margin: var(--space-12) auto 0;
+  padding: var(--space-4) var(--container-pad) var(--space-8);
+  border-top: 1px solid var(--color-hairline);
+  font-family: var(--font-mono);
+  font-size: var(--fz-mono);
+  color: var(--color-text-muted);
+  text-align: center;
+  position: relative;
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.footer a { color: inherit; }
+.footer a:hover { color: var(--color-accent-bright); }
+.footer__inspired {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--color-text-muted);
+  opacity: 0.7;
+  letter-spacing: 0.05em;
+  margin-top: 4px;
+}
+.footer__inspired a { color: inherit; }
+.footer__inspired a:hover { color: var(--color-accent-bright); opacity: 1; }
+.footer__email { display: none; }
+
+@media (max-width: 768px) {
+  .footer__email { display: block; margin-top: 12px; }
+  .footer__email a { color: var(--color-accent); }
+}
+
+/* -------------------------------------------------------------------------
+   View Transitions (progressive enhancement)
+------------------------------------------------------------------------- */
+@view-transition { navigation: auto; }
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: var(--dur-med);
+  animation-timing-function: var(--ease);
+}

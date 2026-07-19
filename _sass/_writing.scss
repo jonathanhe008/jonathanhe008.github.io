@@ -1,0 +1,304 @@
+/* Blog index + post reading column. */
+
+/* -------------------------------------------------------------------------
+   /writing archive index
+------------------------------------------------------------------------- */
+.writing-index {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 160px var(--container-pad) 120px;
+}
+.writing-index__intro {
+  max-width: var(--w-reading);
+  margin-bottom: var(--space-8);
+}
+.writing-index__kicker {
+  font-family: var(--font-mono);
+  font-size: var(--fz-meta);
+  color: var(--color-accent);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.writing-index__title {
+  font-family: var(--font-serif);
+  font-size: clamp(48px, 6vw, 80px);
+  color: var(--color-text);
+  margin-bottom: var(--space-3);
+  font-variation-settings: "opsz" 72, "wght" 500;
+  letter-spacing: -0.02em;
+}
+.writing-index__blurb {
+  color: var(--color-text-muted);
+  font-family: var(--font-serif);
+  font-size: 20px;
+  line-height: 1.5;
+  font-variation-settings: "opsz" 24, "wght" 400;
+}
+
+.writing-index__year {
+  margin-bottom: var(--space-8);
+}
+.writing-index__year-label {
+  font-family: var(--font-mono);
+  font-size: var(--fz-meta);
+  color: var(--color-text-muted);
+  letter-spacing: 0.14em;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--color-hairline);
+  margin-bottom: var(--space-3);
+}
+.writing-index__list { display: flex; flex-direction: column; }
+.writing-index__item {
+  display: block;
+  padding: var(--space-3) 0;
+  border-bottom: 1px solid var(--color-hairline);
+  text-decoration: none;
+  color: inherit;
+  transition: transform var(--dur-med) var(--ease);
+}
+.writing-index__item:last-child { border-bottom: 0; }
+.writing-index__item:hover { transform: translateX(6px); }
+.writing-index__item-title {
+  font-family: var(--font-serif);
+  font-size: 28px;
+  color: var(--color-text);
+  font-variation-settings: "opsz" 48, "wght" 500;
+  margin-bottom: 6px;
+  transition: color var(--dur-med) var(--ease);
+}
+.writing-index__item:hover .writing-index__item-title { color: var(--color-accent-bright); }
+.writing-index__item-meta {
+  font-family: var(--font-mono);
+  font-size: var(--fz-mono);
+  color: var(--color-text-muted);
+  letter-spacing: 0.08em;
+}
+
+.writing-index__empty {
+  font-style: italic;
+  color: var(--color-text-muted);
+}
+
+/* -------------------------------------------------------------------------
+   Post reading column
+------------------------------------------------------------------------- */
+.post {
+  max-width: var(--w-reading);
+  margin: 0 auto;
+  padding: 160px var(--container-pad) 120px;
+}
+.post__meta {
+  font-family: var(--font-mono);
+  font-size: var(--fz-mono);
+  color: var(--color-text-muted);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: var(--space-3);
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.post__title {
+  font-family: var(--font-serif);
+  font-size: clamp(40px, 5vw, 56px);
+  color: var(--color-text);
+  font-variation-settings: "opsz" 72, "wght" 500;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin-bottom: var(--space-4);
+}
+.post__short-rule {
+  border: 0;
+  border-top: 1px solid var(--color-accent);
+  width: 48px;
+  margin: var(--space-3) 0 var(--space-6);
+}
+.post__body {
+  font-family: var(--font-sans);
+  font-size: var(--fz-body);
+  line-height: 1.7;
+  color: var(--color-text);
+}
+.post__body p { margin-bottom: var(--space-3); }
+.post__body h2 {
+  font-family: var(--font-serif);
+  font-size: 28px;
+  color: var(--color-text);
+  margin: var(--space-6) 0 var(--space-2);
+  font-variation-settings: "opsz" 48, "wght" 500;
+}
+.post__body h3 {
+  font-size: 20px;
+  font-weight: 600;
+  margin: var(--space-4) 0 var(--space-2);
+}
+.post__body a {
+  color: var(--color-accent);
+  border-bottom: 1px solid var(--color-hairline);
+}
+.post__body a:hover {
+  color: var(--color-accent-bright);
+  border-bottom-color: currentColor;
+}
+.post__body ul, .post__body ol {
+  margin: 0 0 var(--space-3) var(--space-4);
+  padding-left: 20px;
+}
+.post__body li { margin-bottom: var(--space-1); list-style: disc; }
+.post__body ol li { list-style: decimal; }
+.post__body blockquote {
+  border-left: 2px solid var(--color-accent);
+  padding-left: var(--space-3);
+  margin: var(--space-4) 0;
+  font-style: italic;
+  color: var(--color-text-muted);
+}
+.post__body code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  background: var(--color-bg-elev);
+  color: var(--color-accent);
+  padding: 2px 6px;
+  border-radius: 3px;
+}
+.post__body pre {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  background: var(--color-bg-elev);
+  color: var(--color-text);
+  padding: var(--space-3);
+  border-radius: 4px;
+  border: 1px solid var(--color-hairline);
+  overflow-x: auto;
+  margin: var(--space-4) 0;
+  line-height: 1.5;
+}
+.post__body pre code {
+  background: transparent;
+  padding: 0;
+  color: inherit;
+}
+
+.post__back {
+  display: inline-block;
+  margin-top: var(--space-6);
+  font-family: var(--font-mono);
+  font-size: var(--fz-mono);
+  color: var(--color-accent);
+  letter-spacing: 0.08em;
+  text-decoration: none;
+}
+.post__back:hover { color: var(--color-accent-bright); }
+
+/* Post engagement — upvote + comments. UI-only for now (see TODO(jhez)). */
+.post__engage {
+  max-width: var(--w-reading);
+  margin: var(--space-8) auto 0;
+  padding: 0 var(--container-pad);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.post__upvote {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid var(--color-hairline);
+}
+.upvote-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border: 1px solid var(--color-hairline);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--color-text);
+  font-family: var(--font-mono);
+  font-size: var(--fz-mono);
+  cursor: pointer;
+  transition:
+    border-color var(--dur-med) var(--ease),
+    color var(--dur-med) var(--ease),
+    transform var(--dur-med) var(--ease);
+}
+.upvote-btn:hover,
+.upvote-btn:focus-visible {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+.upvote-btn[aria-pressed="true"] {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+  background: rgba(212, 168, 87, 0.08);
+}
+.upvote-btn__icon svg { display: block; }
+.upvote-btn__count { min-width: 12px; text-align: left; }
+.post__upvote-label {
+  font-family: var(--font-mono);
+  font-size: var(--fz-mono);
+  color: var(--color-text-muted);
+}
+
+.post__comments-title {
+  font-family: var(--font-serif);
+  font-size: 22px;
+  color: var(--color-text);
+  margin-bottom: var(--space-3);
+  font-variation-settings: "opsz" 48, "wght" 500;
+}
+.comment-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: var(--space-5);
+}
+.comment-form__input,
+.comment-form__textarea {
+  font-family: var(--font-sans);
+  font-size: var(--fz-body);
+  padding: 10px 14px;
+  background: var(--color-bg-elev);
+  border: 1px solid var(--color-hairline);
+  border-radius: 4px;
+  color: var(--color-text);
+  transition: border-color var(--dur-med) var(--ease);
+}
+.comment-form__input:focus,
+.comment-form__textarea:focus {
+  outline: none;
+  border-color: var(--color-accent);
+}
+.comment-form__textarea { resize: vertical; min-height: 90px; }
+.comment-form__submit { align-self: flex-start; }
+
+.comment-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+.comment {
+  padding: 12px 16px;
+  background: var(--color-bg-elev);
+  border: 1px solid var(--color-hairline);
+  border-radius: 4px;
+}
+.comment__meta {
+  font-family: var(--font-mono);
+  font-size: var(--fz-mono);
+  color: var(--color-text-muted);
+  margin-bottom: 4px;
+}
+.comment__body { color: var(--color-text); line-height: 1.6; }
+
+.visually-hidden {
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+}
