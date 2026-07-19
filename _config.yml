@@ -13,9 +13,9 @@ author:
 # small "comments coming soon" note instead of the widget.
 giscus:
   repo: "jonathanhe008/jonathanhe008.github.io"
-  repo_id: ""            # from https://giscus.app after selecting the repo
+  repo_id: "R_kgDOIxNPkw"
   category: "Announcements"
-  category_id: ""        # from https://giscus.app
+  category_id: "DIC_kwDOIxNPk84DBix4"
   mapping: "pathname"    # one discussion per post URL path
   reactions_enabled: "1" # 👍 reaction bar doubles as the upvote
   theme_url: "/assets/css/giscus.css"  # custom navy/gold theme, served from this site
