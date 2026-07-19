@@ -191,119 +191,34 @@
 }
 .post__back:hover { color: var(--color-accent-bright); }
 
-/* Post engagement — upvote + comments. UI-only for now (see TODO(jhez)). */
+/* Post engagement — giscus (GitHub Discussions). Reactions double as upvotes. */
 .post__engage {
   max-width: var(--w-reading);
   margin: var(--space-8) auto 0;
-  padding: 0 var(--container-pad);
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-6);
+  padding: var(--space-6) var(--container-pad) 0;
+  border-top: 1px solid var(--color-hairline);
 }
-
-.post__upvote {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  padding-bottom: var(--space-3);
-  border-bottom: 1px solid var(--color-hairline);
-}
-.upvote-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 14px;
-  border: 1px solid var(--color-hairline);
-  border-radius: 999px;
-  background: transparent;
-  color: var(--color-text);
-  font-family: var(--font-mono);
-  font-size: var(--fz-mono);
-  cursor: pointer;
-  transition:
-    border-color var(--dur-med) var(--ease),
-    color var(--dur-med) var(--ease),
-    transform var(--dur-med) var(--ease);
-}
-.upvote-btn:hover,
-.upvote-btn:focus-visible {
-  border-color: var(--color-accent);
-  color: var(--color-accent);
-}
-.upvote-btn[aria-pressed="true"] {
-  border-color: var(--color-accent);
-  color: var(--color-accent);
-  background: rgba(212, 168, 87, 0.08);
-}
-.upvote-btn__icon svg { display: block; }
-.upvote-btn__count { min-width: 12px; text-align: left; }
-.post__upvote-label {
-  font-family: var(--font-mono);
-  font-size: var(--fz-mono);
-  color: var(--color-text-muted);
-}
-
 .post__comments-title {
   font-family: var(--font-serif);
   font-size: 22px;
   color: var(--color-text);
-  margin-bottom: var(--space-3);
+  margin-bottom: var(--space-1);
   font-variation-settings: "opsz" 48, "wght" 500;
 }
-.comment-form {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  margin-bottom: var(--space-5);
-}
-.comment-form__input,
-.comment-form__textarea {
-  font-family: var(--font-sans);
-  font-size: var(--fz-body);
-  padding: 10px 14px;
-  background: var(--color-bg-elev);
-  border: 1px solid var(--color-hairline);
-  border-radius: 4px;
-  color: var(--color-text);
-  transition: border-color var(--dur-med) var(--ease);
-}
-.comment-form__input:focus,
-.comment-form__textarea:focus {
-  outline: none;
-  border-color: var(--color-accent);
-}
-.comment-form__textarea { resize: vertical; min-height: 90px; }
-.comment-form__submit { align-self: flex-start; }
-/* Honeypot — kept in the DOM (bots fill it) but removed from view + a11y tree. */
-.comment-form__hp {
-  position: absolute;
-  left: -9999px;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-}
-
-.comment-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-3);
-}
-.comment {
-  padding: 12px 16px;
-  background: var(--color-bg-elev);
-  border: 1px solid var(--color-hairline);
-  border-radius: 4px;
-}
-.comment__meta {
+.post__comments-note {
   font-family: var(--font-mono);
   font-size: var(--fz-mono);
   color: var(--color-text-muted);
-  margin-bottom: 4px;
+  margin-bottom: var(--space-4);
 }
-.comment__body { color: var(--color-text); line-height: 1.6; }
+.post__comments-soon {
+  font-family: var(--font-mono);
+  font-size: var(--fz-mono);
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+/* giscus injects its iframe here; give it room and let it inherit width. */
+.giscus, .giscus-frame { width: 100%; }
 
 .visually-hidden {
   position: absolute; width: 1px; height: 1px;

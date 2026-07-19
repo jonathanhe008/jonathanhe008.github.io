@@ -1,0 +1,59 @@
+/*
+  Custom giscus theme — deep navy + warm gold, matched to hejonathan.com.
+  Served from this site and referenced via data-theme in _includes/giscus.html.
+  giscus loads this INSIDE its iframe and reads these CSS custom properties.
+  Palette kept in sync with _sass/_tokens.scss.
+*/
+
+main {
+  --color-prettylights-syntax-comment: #7A8AA0;
+  --color-prettylights-syntax-constant: #E5BC6F;
+  --color-prettylights-syntax-entity: #D4A857;
+  --color-prettylights-syntax-string: #E5BC6F;
+  --color-prettylights-syntax-keyword: #D4A857;
+
+  --color-btn-text: #F2ECDC;
+  --color-btn-bg: #0F1B2D;
+  --color-btn-border: rgba(212, 168, 87, 0.18);
+  --color-btn-hover-bg: #14243a;
+  --color-btn-hover-border: #D4A857;
+
+  --color-btn-primary-text: #0A1424;
+  --color-btn-primary-bg: #D4A857;
+  --color-btn-primary-hover-bg: #E5BC6F;
+  --color-btn-primary-border: transparent;
+
+  --color-accent-fg: #D4A857;
+  --color-accent-emphasis: #D4A857;
+  --color-accent-muted: rgba(212, 168, 87, 0.18);
+  --color-accent-subtle: rgba(212, 168, 87, 0.08);
+
+  --color-fg-default: #F2ECDC;
+  --color-fg-muted: #7A8AA0;
+  --color-fg-subtle: #7A8AA0;
+
+  --color-canvas-default: #0A1424;
+  --color-canvas-subtle: #0F1B2D;
+  --color-canvas-overlay: #0F1B2D;
+  --color-canvas-inset: #0A1424;
+
+  --color-border-default: rgba(212, 168, 87, 0.18);
+  --color-border-muted: rgba(212, 168, 87, 0.12);
+
+  --color-neutral-muted: rgba(122, 138, 160, 0.2);
+  --color-social-reaction-bg-hover: #14243a;
+
+  color-scheme: dark;
+  background-color: transparent;
+}
+
+/* Type: match the site's sans stack for body, mono for meta. */
+main,
+.gsc-comment-box-textarea,
+.gsc-comment .gsc-comment-content {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+}
+.gsc-comment-author,
+.gsc-comment-meta {
+  font-family: "JetBrains Mono", "SF Mono", ui-monospace, Menlo, Consolas, monospace;
+}

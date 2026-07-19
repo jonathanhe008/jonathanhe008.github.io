@@ -16,6 +16,14 @@ bundle exec jekyll serve --livereload   # http://localhost:4000
 Push to `main` and GitHub Pages rebuilds within ~60s. Blog posts live in
 `_posts/`; page content in `_layouts/home.html`.
 
+## Comments
+
+Blog comments + reactions use [giscus](https://giscus.app) (GitHub Discussions) —
+zero backend, themed navy/gold via `assets/css/giscus.css`. One-time setup
+(enable Discussions, install the giscus app, paste the repo/category IDs into
+`_config.yml`) is documented in `_includes/giscus.html`. Until the IDs are set,
+posts show a "comments coming soon" note instead of the widget.
+
 ## Inspired by
 
 Structural pattern-language (numbered sections, fixed side rails, tabbed job

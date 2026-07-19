@@ -1,0 +1,39 @@
+{%- comment -%}
+  giscus comments (GitHub Discussions). Reactions double as upvotes.
+
+  SETUP (one-time, GitHub account-side — only jhez can do these):
+    1. Repo → Settings → General → Features → tick "Discussions".
+    2. Install the giscus app: https://github.com/apps/giscus → grant it access
+       to jonathanhe008/jonathanhe008.github.io.
+    3. In the repo's Discussions, make an Announcements-type category (e.g. keep
+       the default "Announcements"). Announcements-type means only the giscus
+       app can open new per-post threads; visitors can only reply.
+    4. Go to https://giscus.app, enter the repo, pick "pathname" mapping and the
+       category. Copy the data-repo-id and data-category-id it generates.
+    5. Paste those into _config.yml → giscus.repo_id / giscus.category_id.
+
+  Until repo_id AND category_id are set, this renders a small placeholder
+  instead of the widget, so the post page never ships a broken embed.
+{%- endcomment -%}
+{%- assign g = site.giscus -%}
+{%- if g.repo_id != "" and g.category_id != "" -%}
+  <script src="https://giscus.app/client.js"
+          data-repo="{{ g.repo }}"
+          data-repo-id="{{ g.repo_id }}"
+          data-category="{{ g.category }}"
+          data-category-id="{{ g.category_id }}"
+          data-mapping="{{ g.mapping | default: 'pathname' }}"
+          data-strict="1"
+          data-reactions-enabled="{{ g.reactions_enabled | default: '1' }}"
+          data-emit-metadata="0"
+          data-input-position="top"
+          data-theme="{{ g.theme_url | absolute_url }}"
+          data-lang="en"
+          data-loading="lazy"
+          crossorigin="anonymous"
+          async>
+  </script>
+  <noscript>Comments require JavaScript. View the discussion for this post on GitHub.</noscript>
+{%- else -%}
+  <p class="post__comments-soon">Comments are coming soon.</p>
+{%- endif -%}

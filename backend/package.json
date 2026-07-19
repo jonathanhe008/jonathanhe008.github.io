@@ -1,8 +1,0 @@
-{
-  "name": "hejonathan-blog-engagement",
-  "version": "1.0.0",
-  "private": true,
-  "type": "module",
-  "description": "Anonymous upvotes + comments API for hejonathan.com blog posts.",
-  "engines": { "node": ">=20" }
-}

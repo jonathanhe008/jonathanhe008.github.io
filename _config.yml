@@ -7,10 +7,18 @@ author:
 
 # Custom layouts ship in this repo; no external theme.
 
-# Blog engagement API (upvotes + comments). Set to the Lambda Function URL
-# after deploying backend/ (see backend/README.md). Leave blank/commented to
-# fall back to the local-only prototype — the site works either way.
-# engagement_api: https://xxxx.lambda-url.us-east-1.on.aws
+# Comments — giscus (GitHub Discussions). Fill in after enabling Discussions on
+# the repo and installing the giscus app; see _includes/giscus.html for the
+# runbook. Until `repo_id` and `category_id` are set, the post page shows a
+# small "comments coming soon" note instead of the widget.
+giscus:
+  repo: "jonathanhe008/jonathanhe008.github.io"
+  repo_id: ""            # from https://giscus.app after selecting the repo
+  category: "Announcements"
+  category_id: ""        # from https://giscus.app
+  mapping: "pathname"    # one discussion per post URL path
+  reactions_enabled: "1" # 👍 reaction bar doubles as the upvote
+  theme_url: "/assets/css/giscus.css"  # custom navy/gold theme, served from this site
 
 markdown: kramdown
 kramdown:
@@ -40,4 +48,3 @@ exclude:
   - Gemfile.lock
   - README.md
   - vendor
-  - backend
