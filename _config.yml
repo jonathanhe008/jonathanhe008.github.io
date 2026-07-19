@@ -7,6 +7,11 @@ author:
 
 # Custom layouts ship in this repo; no external theme.
 
+# Blog engagement API (upvotes + comments). Set to the Lambda Function URL
+# after deploying backend/ (see backend/README.md). Leave blank/commented to
+# fall back to the local-only prototype — the site works either way.
+# engagement_api: https://xxxx.lambda-url.us-east-1.on.aws
+
 markdown: kramdown
 kramdown:
   input: GFM
@@ -35,3 +40,4 @@ exclude:
   - Gemfile.lock
   - README.md
   - vendor
+  - backend

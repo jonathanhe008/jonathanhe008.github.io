@@ -26,7 +26,7 @@ layout: default
   localStorage only (not synced across visitors); comments render optimistically
   and are lost on refresh.
 {%- endcomment -%}
-<section class="post__engage" aria-label="Reactions and comments" data-post-slug="{{ page.slug | default: page.url }}">
+<section class="post__engage" aria-label="Reactions and comments" data-post-slug="{{ page.slug | default: page.url }}"{% if site.engagement_api %} data-api="{{ site.engagement_api }}"{% endif %}>
   <div class="post__upvote">
     <button class="upvote-btn" type="button" data-upvote-btn aria-pressed="false" aria-label="Upvote this post">
       <span class="upvote-btn__icon" aria-hidden="true">
@@ -40,10 +40,15 @@ layout: default
   <div class="post__comments">
     <h3 class="post__comments-title">Comments</h3>
     <form class="comment-form" data-comment-form>
+      {%- comment -%}Honeypot — real users never see or fill this. Bots that autofill get dropped.{%- endcomment -%}
+      <div class="comment-form__hp" aria-hidden="true">
+        <label for="comment-website">Website</label>
+        <input id="comment-website" type="text" name="hp" tabindex="-1" autocomplete="off">
+      </div>
       <label for="comment-name" class="visually-hidden">Name</label>
-      <input class="comment-form__input" id="comment-name" type="text" name="name" placeholder="Name" autocomplete="name" required>
+      <input class="comment-form__input" id="comment-name" type="text" name="name" placeholder="Name" autocomplete="name" maxlength="60" required>
       <label for="comment-body" class="visually-hidden">Comment</label>
-      <textarea class="comment-form__textarea" id="comment-body" name="body" placeholder="Add a comment…" rows="4" required></textarea>
+      <textarea class="comment-form__textarea" id="comment-body" name="body" placeholder="Add a comment…" rows="4" maxlength="2000" required></textarea>
       <button class="comment-form__submit button button--ghost" type="submit">
         <span class="button__icon">{%- include icons/padlock.svg -%}</span>
         <span class="button__label">Post comment</span>
