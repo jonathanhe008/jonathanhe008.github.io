@@ -334,6 +334,9 @@ body::before {
   transition: opacity var(--dur-long) var(--ease);
 }
 body.spotlight-on::before { opacity: 1; }
+/* Drop the blend-mode spotlight while hovering the comments iframe — soft-light
+   compositing over an iframe is a repaint hotspot and causes hover lag. */
+body:has(.post__engage:hover)::before { opacity: 0; }
 
 @media (hover: none), (pointer: coarse), (prefers-reduced-motion: reduce) {
   body::before { display: none; }
@@ -360,6 +363,10 @@ body.spotlight-on::before { opacity: 1; }
 }
 .cursor-reticle.is-active { opacity: 1; }
 .cursor-reticle.is-hover  { width: 24px; height: 24px; }
+/* Over the giscus comments (an iframe), the parent stops getting pointermove,
+   so the custom reticle freezes at the boundary and its blend-mode compositing
+   over the iframe is costly. Hide it there — the native cursor takes over. */
+body:has(.post__engage:hover) .cursor-reticle { opacity: 0 !important; }
 .cursor-reticle::before {
   content: "";
   position: absolute;
