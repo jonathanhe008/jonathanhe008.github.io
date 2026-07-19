@@ -47,6 +47,11 @@ main {
   background-color: transparent;
 }
 
+/* Hide the "Powered by giscus" branding line. Target the container that holds
+   the giscus.app link (utility-class names are volatile; :has is stable). */
+main div:has(> a[href^="https://giscus.app"]) { display: none !important; }
+main a[href^="https://giscus.app"] { display: none !important; }
+
 /* Type: match the site's sans stack for body, mono for meta. */
 main,
 .gsc-comment-box-textarea,
