@@ -486,6 +486,8 @@
   margin-bottom: 8px;
 }
 .jobs__panel-title {
+  flex: 1;
+  min-width: 0;
   font-family: var(--font-serif);
   font-size: var(--fz-h3);
   color: var(--color-text);
@@ -556,6 +558,9 @@
     padding: 20px 0;
     border-top: 1px solid var(--color-hairline);
   }
+  /* First stacked panel sits right under the section heading's rule — drop
+     its top border so the two lines don't read as a doubled divider. */
+  .jobs__panel:first-child { border-top: 0; padding-top: 0; }
   .jobs__panel:last-child { border-bottom: 1px solid var(--color-hairline); }
   .jobs__panel[hidden] { display: block; }
   .jobs__panel-title {
@@ -563,7 +568,10 @@
   }
   .jobs__panel-header {
     min-height: 44px;
+    flex-wrap: nowrap;
+    align-items: flex-start;
   }
+  .amazon-logo { flex: none; }
 }
 
 /* -------------------------------------------------------------------------
