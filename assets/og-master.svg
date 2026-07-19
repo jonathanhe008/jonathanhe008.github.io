@@ -1,16 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="Jonathan He">
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="JH monogram">
   <rect width="1200" height="630" fill="#0A1424"/>
   <!-- Hairline frame -->
   <rect x="40" y="40" width="1120" height="550" fill="none" stroke="#D4A857" stroke-opacity="0.22" stroke-width="2"/>
 
-  <!-- JH monogram, left -->
-  <g fill="none" stroke="#D4A857" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" transform="translate(120 235) scale(4.2)">
+  <!-- JH monogram, centered. Content x:6–34 (center 20), y:8–32 (center 20).
+       scale 11 → 308px letters; translate to center on 600,315. -->
+  <g fill="none" stroke="#D4A857" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" transform="translate(380 95) scale(11)">
     <path d="M12 8 L12 26 C12 30, 8 32, 6 30"/>
     <path d="M20 8 L20 32 M20 20 L34 20 M34 8 L34 32"/>
   </g>
-
-  <!-- Text block, right -->
-  <text x="360" y="300" fill="#F2ECDC" font-family="Georgia, 'Times New Roman', serif" font-size="76" font-weight="500">Jonathan He</text>
-  <text x="360" y="360" fill="#D4A857" font-family="'Courier New', monospace" font-size="30" letter-spacing="2">I build authorization for AI agents.</text>
-  <text x="360" y="410" fill="#7A8AA0" font-family="'Courier New', monospace" font-size="24" letter-spacing="1">hejonathan.com</text>
 </svg>
